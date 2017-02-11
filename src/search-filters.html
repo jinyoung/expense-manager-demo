@@ -101,29 +101,29 @@
 
     <div id="content">
       <div class="filters">
-        <div class="title">Filter Expenses</div>
+        <div class="title">문서검색</div>
 
         <div class="row">
           <div class="date col">
-            <vaadin-date-picker id="from" auto-validate label="From" value="{{filters.start}}"></vaadin-date-picker>
+            <vaadin-date-picker id="from" auto-validate label="시작" value="{{filters.start}}"></vaadin-date-picker>
             <span>–</span>
-            <vaadin-date-picker id="to" auto-validate label="To" value="{{filters.end}}"></vaadin-date-picker>
+            <vaadin-date-picker id="to" auto-validate label="끝" value="{{filters.end}}"></vaadin-date-picker>
           </div>
         </div>
 
         <div class="row">
           <div class="total col">
-            <paper-input label="Min" value="{{filters.min}}" type="number" required step="any">
+            <paper-input label="최소가격" value="{{filters.min}}" type="number" required step="any">
               <div prefix>$</div>
             </paper-input>
             <span>–</span>
-            <paper-input label="Max" value="{{filters.max}}" type="number" required step="any"></paper-input>
+            <paper-input label="최고가격" value="{{filters.max}}" type="number" required step="any"></paper-input>
           </div>
         </div>
 
         <div class="row">
           <div class="merchants col">
-            <vaadin-combo-box label="Merchant" items="{{merchants}}" value="{{filters.merchant}}" id="merchantsSelect"></vaadin-combo-box>
+            <vaadin-combo-box label="문서유형" items="{{merchants}}" value="{{filters.merchant}}" id="merchantsSelect"></vaadin-combo-box>
           </div>
         </div>
 

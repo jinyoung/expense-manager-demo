@@ -178,20 +178,20 @@
         <div class="form">
           <form is="iron-form" id="form">
             <iron-a11y-keys keys="enter" on-keys-pressed="_save"></iron-a11y-keys>
-            <vaadin-combo-box name="merchant" id="merchant" items="[[merchants]]" value="{{expense.merchant}}" label="Merchant" allow-custom-value required></vaadin-combo-box>
-            <paper-input name="total" id="total" value="{{expense.total}}" type="number" max="10000" label="Total" required step="any">
+            <vaadin-combo-box name="merchant" id="merchant" items="[[merchants]]" value="{{expense.merchant}}" label="문서유형" allow-custom-value required></vaadin-combo-box>
+            <paper-input name="total" id="total" value="{{expense.total}}" type="number" max="10000" label="문서가격" required step="any">
               <div prefix>$</div>
             </paper-input>
 
-            <vaadin-date-picker label="Date" value="{{expense.date}}" id="date" name="date" required></vaadin-date-picker>
-            <paper-textarea id="comment" name="comment" label="Comment" value="{{expense.comment}}"></paper-textarea>
+            <vaadin-date-picker label="생성일" value="{{expense.date}}" id="date" name="date" required></vaadin-date-picker>
+            <paper-textarea id="comment" name="comment" label="설명" value="{{expense.comment}}"></paper-textarea>
           </form>
         </div>
         <div class="receipt">
           <vaadin-upload id="upload" accept="image/*" max-files="1" on-upload-before="_handleUpload" required>
             <div class="file-list">
               <div class="receipt-wrapper">
-                <img src$="[[_receiptURL]]" alt="Receipt" hidden$="[[!_showReceipt(expense._attachments.*)]]">
+                <img src$="[[_receiptURL]]" alt="파일" hidden$="[[!_showReceipt(expense._attachments.*)]]">
               </div>
             </div>
           </vaadin-upload>
@@ -241,8 +241,8 @@
         observers: ['_updateReceiptURL(expense._attachments.*)'],
 
         ready: function() {
-          this.$.upload.set('i18n.dropFiles.one', 'Drop receipt here...');
-          this.$.upload.set('i18n.addFiles.one', 'Select receipt');
+          this.$.upload.set('i18n.dropFiles.one', '파일을 드래그 앤 드롭 하세요...');
+          this.$.upload.set('i18n.addFiles.one', '파일을 선택하세요');
         },
 
         attached: function() {
@@ -264,9 +264,9 @@
 
         _getCaption: function(expense) {
           if (expense._id) {
-            return 'Edit Expense';
+            return '문서편집';
           } else {
-            return 'Add Expense';
+            return '문서추가';
           }
         },
 

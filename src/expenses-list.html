@@ -116,12 +116,22 @@
     <vaadin-grid id="expenses" frozen-columns="1">
       <table>
         <colgroup>
+          <col name="comment" flex="2" min-width="260" sortable/>
           <col name="date" width="120" sortable sort-direction="desc" />
           <col name="merchant" flex="1" min-width="145" sortable/>
           <col name="total" width="90" sortable/>
           <col name="status" width="120" sortable/>
-          <col name="comment" flex="2" min-width="260" sortable/>
         </colgroup>
+
+        <thead>
+          <tr>
+            <th>문서명</th>
+            <th>등록일</th>
+            <th>문서유형</th>
+            <th>문서가격</th>
+            <th>상태</th>
+          </tr>
+        </thead>
       </table>
     </vaadin-grid>
     <paper-fab icon="add" on-tap="_showExpenseEditor" id="add-button"></paper-fab>
@@ -178,13 +188,13 @@
           };
 
           grid.then(function() {
-            grid.columns[0].renderer = function(cell) {
+            grid.columns[1].renderer = function(cell) {
               cell.element.innerHTML = moment(cell.data).format('MM/DD/YYYY');
             };
-            grid.columns[2].renderer = function(cell) {
-              cell.element.innerHTML = '$' + cell.data.toFixed(2);
-            };
             grid.columns[3].renderer = function(cell) {
+              cell.element.innerHTML = cell.data.toFixed(2) + '원';
+            };
+            grid.columns[4].renderer = function(cell) {
               var status = cell.data.replace(/_/g, ' ');
               status = status.charAt(0).toUpperCase() + status.slice(1);
               cell.element.textContent = status;
